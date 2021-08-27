@@ -16,7 +16,7 @@ with open('day_head_circumference.csv') as dataset:
 x_train = torch.tensor(x_observe).reshape(-1, 1)
 y_train = torch.tensor(y_observe).reshape(-1, 1)
 
-class LinearRegressionModel:
+class RegressionModel:
     def __init__(self):
         # Model variables
         self.W = torch.tensor([[0.0]], requires_grad=True)  # requires_grad enables calculation of gradients
@@ -33,7 +33,7 @@ class LinearRegressionModel:
     def sigmoid(self, z):
         return 1 / (1 + torch.exp(-z))
 
-model = LinearRegressionModel()
+model = RegressionModel()
 
 # Optimize: adjust W and b to minimize loss using stochastic gradient descent
 optimizer = torch.optim.SGD([model.b, model.W], 0.00000001)

@@ -73,6 +73,7 @@ ax.scatter(x_observe, y_observe, z_observe)
 x = torch.tensor([[torch.min(x_train)], [torch.max(x_train)]])
 y = torch.tensor([[torch.min(y_train)], [torch.max(y_train)]])
 ax.plot(x.flatten(), y.flatten(), model.f(
-    x, y).detach().flatten(), label='$f(x)=xW+b$', color="orange")
+    x, y).detach().flatten(), label='$f(x)=x1W1+x2W2+b$', color="orange")
+# TODO: Fix 3D plane
 ax.legend()
 plt.show()
