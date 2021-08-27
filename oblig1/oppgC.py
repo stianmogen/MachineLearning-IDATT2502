@@ -1,6 +1,5 @@
 import torch
 import matplotlib.pyplot as plt
-import numpy
 
 # Observed/training input and output
 

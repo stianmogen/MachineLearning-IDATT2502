@@ -1,8 +1,5 @@
-import numpy as np
 import torch
 import matplotlib.pyplot as plt
-from matplotlib import cm
-from mpl_toolkits.mplot3d import axes3d, art3d
 
 x_observe = []
 y_observe = []
@@ -11,7 +8,7 @@ z_observe = []
 with open('day_length_weight.csv') as dataset:
     data = dataset.readlines()[1:]
     for line in data:
-        z, x, y = line.split(',')   #splits on ',' with a maximum of three elements, x, y, z
+        z, x, y = line.split(',')   #splits on ','
         x_observe.append(float(x))
         y_observe.append(float(y))
         z_observe.append(float(z))
