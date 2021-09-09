@@ -1,0 +1,5 @@
+Lag en modell med prediktoren f (x) = softmax(xW + b) som
+klassifiserer handskrevne tall. Se mnist for eksempel lasting av
+MNIST datasettet, og visning og lagring av en observasjon. Du
+skal oppnå en nøyaktighet på 0.9 eller over. Lag 10 .png bilder
+som viser W etter optimalisering.

@@ -1,0 +1,2 @@
+Lag en modell som predikerer tilsvarende NOT-operatoren.
+Visualiser resultatet etter optimalisering av modellen.

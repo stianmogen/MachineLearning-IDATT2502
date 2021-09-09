@@ -1,0 +1,5 @@
+Lag en modell som predikerer tilsvarende XOR-operatoren. Før
+du optimaliserer denne modellen må du initialisere
+modellvariablene med tilfeldige tall for eksempel mellom -1 og
+1. Visualiser både når optimaliseringen konvergerer og ikke
+konvergerer mot en riktig modell.
