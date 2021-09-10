@@ -38,12 +38,12 @@ class HandwritingClassfication:
 model = HandwritingClassfication()
 
 learning_rate = 0.1
-epoch = 10_000
+epoch = 1000
 
 optimizer = torch.optim.SGD([model.W, model.b], lr=learning_rate)
 results = []
 for index, epoch in enumerate(range(epoch)):
-    if (index+1) % 1000 == 0:
+    if (index+1) % 100 == 0:
         print(f'epoch = {index+1}, loss = {model.loss(x_train, y_train).item()}, accuracy = {model.accuracy(x_test, y_test).item() * 100}%')
         results.append([index+1, model.loss(x_train, y_train).item(),
                         model.accuracy(x_test, y_test).item() * 100])
@@ -63,3 +63,5 @@ for i in range(10):
     plt.title(f'W: {i}')
     plt.xticks([])
     plt.yticks([])
+
+plt.show()
