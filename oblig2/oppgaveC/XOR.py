@@ -40,13 +40,12 @@ model = XOR()
 
 # Optimize: adjust W and b to minimize loss using stochastic gradient descent
 optimizer = torch.optim.SGD([model.b1, model.b2, model.W1, model.W2], 0.1)
-for epoch in range(50_000):
+for epoch in range(200_000):
     model.loss(x_train, y_train).backward()  # Compute loss gradients
     optimizer.step()  # Perform optimization by adjusting W and b
     optimizer.zero_grad()  # Clear gradients for next step
 
-print(
-    f'W1 = {model.W1}, W2 = {model.W2}, b1 = {model.b1}, b2 = {model.b2}, loss = {model.loss(x_train.reshape(-1, 2), y_train)}')
+print(f'W1 = {model.W1}, W2 = {model.W2}, b1 = {model.b1}, b2 = {model.b2}, loss = {model.loss(x_train.reshape(-1, 2), y_train)}')
 
 
 # Visualize result

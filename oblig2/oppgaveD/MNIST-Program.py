@@ -38,12 +38,12 @@ class HandwritingClassfication:
 model = HandwritingClassfication()
 
 learning_rate = 0.1
-epoch = 1000
+epoch = 10_000
 
 optimizer = torch.optim.SGD([model.W, model.b], lr=learning_rate)
 results = []
 for index, epoch in enumerate(range(epoch)):
-    if (index+1) % 100 == 0:
+    if (index+1) % 1000 == 0:
         print(f'epoch = {index+1}, loss = {model.loss(x_train, y_train).item()}, accuracy = {model.accuracy(x_test, y_test).item() * 100}%')
         results.append([index+1, model.loss(x_train, y_train).item(),
                         model.accuracy(x_test, y_test).item() * 100])
@@ -52,11 +52,13 @@ for index, epoch in enumerate(range(epoch)):
     optimizer.step()  # Perform optimization by adjusting W and b
     optimizer.zero_grad()  # Clear gradients for next step
 
+results.append(([]))
+
 print(tabulate.tabulate(results, headers=['epoch', 'loss', 'accuracy']))
 
-"""------------------ visualize ------------------"""
-fig = plt.figure('Oppgave D')
-fig.suptitle('MNIST - classification of handwritten numbers')
+
+fig = plt.figure('MNIST')
+fig.suptitle('MNIST')
 for i in range(10):
     plt.subplot(2, 5, i+1)
     plt.imshow(model.W[:, i].detach().numpy().reshape(28, 28))
