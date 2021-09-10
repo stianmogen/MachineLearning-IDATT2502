@@ -42,20 +42,14 @@ epoch = 10_000
 
 optimizer = torch.optim.SGD([model.W, model.b], lr=learning_rate)
 results = []
-for index, epoch in enumerate(range(epoch)):
-    if (index+1) % 1000 == 0:
-        print(f'epoch = {index+1}, loss = {model.loss(x_train, y_train).item()}, accuracy = {model.accuracy(x_test, y_test).item() * 100}%')
-        results.append([index+1, model.loss(x_train, y_train).item(),
-                        model.accuracy(x_test, y_test).item() * 100])
-
+for epoch in range(epoch):
     model.loss(x_train, y_train).backward()  # Compute loss gradients
     optimizer.step()  # Perform optimization by adjusting W and b
     optimizer.zero_grad()  # Clear gradients for next step
 
 results.append(([]))
 
-print(tabulate.tabulate(results, headers=['epoch', 'loss', 'accuracy']))
-
+print(f'epoch = {epoch}, loss = {model.loss(x_train, y_train).item()}, accuracy = {model.accuracy(x_test, y_test).item() * 100}%')
 
 fig = plt.figure('MNIST')
 fig.suptitle('MNIST')
