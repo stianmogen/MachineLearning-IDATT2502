@@ -30,19 +30,26 @@ class ConvolutionalNeuralNetworkModel(nn.Module):
         super(ConvolutionalNeuralNetworkModel, self).__init__()
 
         self.pool = nn.MaxPool2d(kernel_size=2)
-        self.conv2d_first = nn.Conv2d(1, 32, kernel_size=5, padding=2)
+        self.c1 = nn.Conv2d(1, 32, kernel_size=5, padding=2)
         # extends example code with additional layer
-        self.conv2d_second = nn.Conv2d(32, 64, kernel_size=5, padding=2)
-        self.denseFirst = nn.Linear(64 * 7 * 7, 1024)
-        self.denseSecond = nn.Linear(1024, 10)
+        self.c2 = nn.Conv2d(32, 64, kernel_size=5, padding=2)
+        self.d1 = nn.Linear(64 * 7 * 7, 1024)
+        self.d2 = nn.Linear(1024, 10)
 
     def logits(self, x):
-        x = self.pool(self.conv2d_first(x))
-        x = self.pool(nn.functional.relu(x))
-        x = self.pool(nn.functional.dropout(x))
-        x = self.pool(self.conv2d_second(x))
-        x = self.denseFirst(x.view(-1, 64 * 7 * 7))
-        return self.denseSecond(x.view(-1, 1024))
+        #x = self.pool(self.conv2d_first(x))
+        #x = nn.functional.relu(x)
+        #x = self.pool(nn.functional.dropout(x))
+        #x = self.pool(self.conv2d_second(x))
+        x = nn.functional.relu(self.c1(x))
+        x = self.pool(nn.functional.dropout(x, p=0.05))
+        x = self.pool(self.c2(x))
+
+        x = self.d1(x.view(-1, 64 * 7 * 7))
+        x = self.d2(x.view(-1, 1024))
+
+
+        return x
 
     def f(self, x):
         return torch.softmax(self.logits(x), dim=1)
